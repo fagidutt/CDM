@@ -1,0 +1,6 @@
+#if !defined(COMPILE_VARS_H)
+#define COMPILE_VARS_H 1
+
+const string VACC_FTP_PASSWORD = "<strong-ftp-password-here>";
+
+#endif
