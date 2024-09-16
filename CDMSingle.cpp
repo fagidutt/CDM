@@ -4,6 +4,7 @@
 #include "pugixml.cpp"
 #include <thread>
 #include "Delay.h"
+#include <compilevars.h>
 
 extern "C" IMAGE_DOS_HEADER __ImageBase;
 
@@ -98,6 +99,7 @@ CDM::CDM(void) :CPlugIn(EuroScopePlugIn::COMPATIBILITY_CODE, MY_PLUGIN_NAME, MY_
 	loadingMessage += MY_PLUGIN_VERSION;
 	loadingMessage += " loaded.";
 	sendMessage(loadingMessage);
+	sendMessage("modified by vACC Switzerland");
 
 	// Register Tag Item "CDM-OPTIONS"
 	RegisterTagItemType("Options", TAG_ITEM_OPTIONS);
@@ -215,7 +217,7 @@ CDM::CDM(void) :CPlugIn(EuroScopePlugIn::COMPATIBILITY_CODE, MY_PLUGIN_NAME, MY_
 	flowRestrictionsUrl = getFromXml("/CDM/FlowRestrictions/@url");
 	vdgsFileType = getFromXml("/CDM/vdgsFileType/@type");
 	ftpHost = getFromXml("/CDM/ftpHost/@host");
-	ftpUser = getFromXml("/CDM/ftpUser/@user");
+	ftpUser = VACC_FTP_PASSWORD;
 	ftpPassword = getFromXml("/CDM/ftpPassword/@password");
 	string opt_su_wait = getFromXml("/CDM/Su_Wait/@mode");
 
