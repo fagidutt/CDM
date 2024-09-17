@@ -5,6 +5,7 @@
 #include <thread>
 #include "Delay.h"
 #include <compilevars.h>
+#include "SFTP.h"
 
 extern "C" IMAGE_DOS_HEADER __ImageBase;
 
@@ -216,9 +217,9 @@ CDM::CDM(void) :CPlugIn(EuroScopePlugIn::COMPATIBILITY_CODE, MY_PLUGIN_NAME, MY_
 	string stringDebugMode = getFromXml("/CDM/Debug/@mode");
 	flowRestrictionsUrl = getFromXml("/CDM/FlowRestrictions/@url");
 	vdgsFileType = getFromXml("/CDM/vdgsFileType/@type");
-	ftpHost = getFromXml("/CDM/ftpHost/@host");
-	ftpUser = VACC_FTP_PASSWORD;
-	ftpPassword = getFromXml("/CDM/ftpPassword/@password");
+	ftpHost = VACC_FTP_HOST;
+	ftpUser = VACC_FTP_USER;
+	ftpPassword = VACC_FTP_PASSWORD;
 	string opt_su_wait = getFromXml("/CDM/Su_Wait/@mode");
 
 	option_su_wait = false;
@@ -5643,11 +5644,10 @@ bool CDM::isNumber(string s)
 void CDM::upload(string fileName, string airport)
 {
 	string saveName = "/CDM_data_" + airport + ".txt";
-	HINTERNET hInternet = InternetOpen(NULL, INTERNET_OPEN_TYPE_DIRECT, NULL, NULL, 0);
-	HINTERNET hFtpSession = InternetConnect(hInternet, ftpHost.c_str(), INTERNET_DEFAULT_FTP_PORT, ftpUser.c_str(), ftpPassword.c_str(), INTERNET_SERVICE_FTP, INTERNET_FLAG_PASSIVE, 0);
-	FtpPutFile(hFtpSession, fileName.c_str(), saveName.c_str(), FTP_TRANSFER_TYPE_BINARY, 0);
-	InternetCloseHandle(hFtpSession);
-	InternetCloseHandle(hInternet);
+	int response = UploadFileFTPS(ftpHost, ftpUser, ftpPassword, fileName, saveName);
+	if (response != 0) {
+		sendMessage("FTP error: " + response);
+	}
 }
 
 

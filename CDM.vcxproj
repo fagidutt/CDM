@@ -16,6 +16,7 @@
     <ClInclude Include="Constant.hpp" />
     <ClInclude Include="Delay.h" />
     <ClInclude Include="Flow.h" />
+    <ClInclude Include="SFTP.h" />
     <ClInclude Include="json_tool.h" />
     <ClInclude Include="Libs\EuroScopePlugIn.h" />
     <ClInclude Include="Plane.h" />
@@ -31,6 +32,7 @@
     <ClCompile Include="json_value.cpp" />
     <ClCompile Include="json_writer.cpp" />
     <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="SFTP.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
@@ -120,7 +122,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>Normaliz.lib;Ws2_32.lib;Wldap32.lib;Crypt32.lib;advapi32.lib;EuroScopePlugInDll.lib;Libs\include\curl\x32 Release\lib\libcurl_a.lib</AdditionalDependencies>
+      <AdditionalDependencies>Normaliz.lib;Ws2_32.lib;Wldap32.lib;Crypt32.lib;advapi32.lib;EuroScopePlugInDll.lib;Libs\include\curl\x32 Release\lib\libcurl.lib;Libs\include\curl\x32 Release\lib\zlib.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Program Files %28x86%29\EuroScope 3.2.3 Token\PlugInEnvironment;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>

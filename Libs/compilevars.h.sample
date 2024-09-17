@@ -1,6 +1,8 @@
 #if !defined(COMPILE_VARS_H)
 #define COMPILE_VARS_H 1
 
+const string VACC_FTP_HOST = "<ftp-hostname>";
+const string VACC_FTP_USER = "<ftp-username>";
 const string VACC_FTP_PASSWORD = "<strong-ftp-password-here>";
 
 #endif
