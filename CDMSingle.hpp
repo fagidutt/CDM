@@ -105,7 +105,7 @@ public:
 
 	void saveData();
 
-	void upload(string fileName, string airport);
+	void upload(string fileName, string airport, string type);
 
 	void multithread(void(CDM::* f)());
 

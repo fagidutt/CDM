@@ -5546,7 +5546,7 @@ void CDM::saveData() {
 						}
 					}
 					myfile.close();
-					upload(fileName, airport);
+					upload(fileName, airport, ".txt");
 				}
 			}
 		}
@@ -5633,7 +5633,7 @@ void CDM::createJsonVDGS(vector<Plane> slotList, string fileName, string airport
 		sendMessage("Error writing the vdgs file");
 	}
 
-	upload(fileName, airport);
+	upload(fileName, airport, ".json");
 }
 
 bool CDM::isNumber(string s)
@@ -5641,9 +5641,9 @@ bool CDM::isNumber(string s)
 	return std::any_of(s.begin(), s.end(), ::isdigit);
 }
 
-void CDM::upload(string fileName, string airport)
+void CDM::upload(string fileName, string airport, string type)
 {
-	string saveName = "/CDM_data_" + airport + ".txt";
+	string saveName = "/CDM_data_" + airport + type;
 	int response = UploadFileFTPS(ftpHost, ftpUser, ftpPassword, fileName, saveName);
 	if (response != 0) {
 		sendMessage("FTP error: " + response);
